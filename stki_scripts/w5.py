@@ -24,12 +24,6 @@ def cosine(vector1, vector2):
     dot  = sum([a*b for a,b in zip(vector1, vector2)])
     mag1 = math.sqrt(sum([a**2 for a in vector1]))
     mag2 = math.sqrt(sum([a**2 for a in vector2]))
+
     return round(dot/(mag1*mag2),3)*100
 
-
-
-p = [1,1,1,1,2,0,0]
-q = [0,0,1,1,1,1,1]
-
-# print euclidean(p,q)
-# print cosine(p,q)

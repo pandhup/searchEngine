@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 Flask
 Flask-WTF
+=======
+Sastrawi
+Flask
+Flask-WTF
+
+>>>>>>> df7fe41ea5ea3de6e8d91e3472c375156f305e09
