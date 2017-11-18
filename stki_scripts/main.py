@@ -2,7 +2,11 @@
 author rochanaph
 October 23 2017"""
 
-import w3,w4,w5, os
+import w3,w4,w5,os,sys
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 
 def findSim(keyword, path):
 
@@ -24,7 +28,7 @@ def findSim(keyword, path):
     for isi in os.listdir(path):
      if isi.endswith(".txt"):
          with open(path + isi,'r') as file:
-             isi_doc[isi] = file.readline()
+             isi_doc[isi] = file.read()
              
 
     # membuat list list_of_bow
