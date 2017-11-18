@@ -22,7 +22,7 @@ def squeeze_whitespace(string):
 ## remove punctuation
 def remove_punctuation(string):
     punc = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-",
-            ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]",
+            "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]",
             "^", "_", "`", "{", "|", "}", "~", "\""]
     for item in punc:
         string = string.replace(item, " ")
@@ -60,5 +60,5 @@ def prepro_base(string):
 def prepro_antidot(string):
     token = tokenize(squeeze_whitespace(string))
     cleantext = [fold(item) for item in token]
-    cleantext = [remove_punctuation_nodot(item) for item in cleantext]
+    cleantext = [remove_punctuation(item) for item in cleantext]
     return " ".join(cleantext)

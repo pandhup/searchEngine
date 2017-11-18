@@ -4,6 +4,9 @@ October 23 2017"""
 
 import w3,w4,w5, os
 
+#reload(sys)  
+#sys.setdefaultencoding('utf8')
+
 def findSim(keyword, path):
 
     # membuat dictionary articles
@@ -19,7 +22,7 @@ def findSim(keyword, path):
     # kemudian dimasukan ke dictionary articles dengan value keyword yang dimasukan
     kata_kunci = 'keyword_index'
     articles[kata_kunci] = w3.prepro_base(keyword)
-
+    #menampilkan isi deskripsi sesuai dengan token yang ada 
     isi_doc = {}
     for isi in os.listdir(path):
      if isi.endswith(".txt"):
@@ -31,7 +34,7 @@ def findSim(keyword, path):
     # yang kemudian dimasukan token-token unik di setiap dokumennya
     list_of_bow = []
     for key, value in articles.items():
-        list_token = value.split()
+        list_token = value.split(".")
         dic = w4.bow(list_token)
         list_of_bow.append(dic)
 
@@ -45,6 +48,17 @@ def findSim(keyword, path):
     for key, vektor in zip(articles.keys(), matrix_akhir):
         if key != kata_kunci:
             presentase[key] = w5.cosine(matrix_akhir[id_keyword], vektor)
+    
 
-    return w4.sortdic(presentase, isi_doc, descending=True)
+    return w4.sortdic(presentase,baris , descending=True)
 
+path="./text files/"
+keyword="JAKARTA"
+baris = []
+for item in os.listdir(path):
+    if item.endswith(".txt"):
+        files = open(path + item, 'r', encoding = 'utf-8')
+        for line in files:
+             if keyword in line: baris.append(line)
+print(baris)
+    
