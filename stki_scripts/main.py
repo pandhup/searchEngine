@@ -2,7 +2,10 @@
 author rochanaph
 October 23 2017"""
 
-import w3,w4,w5, os
+import w3,w4,w5, os, sys
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 def findSim(keyword, path):
 
@@ -19,6 +22,13 @@ def findSim(keyword, path):
     # kemudian dimasukan ke dictionary articles dengan value keyword yang dimasukan
     kata_kunci = 'keyword_index'
     articles[kata_kunci] = w3.prepro_base(keyword)
+
+    isi_doc = {}
+    for isi in os.listdir(path):
+     if isi.endswith(".txt"):
+         with open(path + isi,'r') as file:
+             isi_doc[isi] = file.read()
+             
 
     # membuat list list_of_bow
     # yang kemudian dimasukan token-token unik di setiap dokumennya
@@ -39,5 +49,13 @@ def findSim(keyword, path):
         if key != kata_kunci:
             presentase[key] = w5.cosine(matrix_akhir[id_keyword], vektor)
 
-    return w4.sortdic(presentase, descending=True)
+
+    baris = []
+    for item in os.listdir(path):
+        if item.endswith(".txt"):
+            files = open(path + item, 'r')
+            for line in files:
+                if keyword in line: baris.append(line)
+
+    return w4.sortdic(presentase, isi_doc, baris, descending=True)
 

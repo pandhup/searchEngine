@@ -28,6 +28,7 @@ def remove_punctuation(string):
         string = string.replace(item, " ")
     return string.strip()
 
+
 ## remove stopwords
 path_stopwords = "./stopwords.txt"
 def remove_stopword(list_of_strings):
