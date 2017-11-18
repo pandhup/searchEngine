@@ -20,6 +20,13 @@ def findSim(keyword, path):
     kata_kunci = 'keyword_index'
     articles[kata_kunci] = w3.prepro_base(keyword)
 
+    isi_doc = {}
+    for isi in os.listdir(path):
+     if isi.endswith(".txt"):
+         with open(path + isi,'r') as file:
+             isi_doc[isi] = file.readline()
+             
+
     # membuat list list_of_bow
     # yang kemudian dimasukan token-token unik di setiap dokumennya
     list_of_bow = []
@@ -39,5 +46,5 @@ def findSim(keyword, path):
         if key != kata_kunci:
             presentase[key] = w5.cosine(matrix_akhir[id_keyword], vektor)
 
-    return w4.sortdic(presentase, descending=True)
+    return w4.sortdic(presentase, isi_doc, descending=True)
 

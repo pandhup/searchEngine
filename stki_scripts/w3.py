@@ -28,6 +28,13 @@ def remove_punctuation(string):
         string = string.replace(item, " ")
     return string.strip()
 
+def remove_punctuation_nodot(string):
+    punc = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]",
+            "^", "_", "`", "{", "|", "}", "~", "\""]
+    for item in punc:
+        string = string.replace(item, " ")
+    return string.strip()
+
 ## remove stopwords
 path_stopwords = "./stopwords.txt"
 def remove_stopword(list_of_strings):
@@ -55,4 +62,10 @@ def prepro_base(string):
     token = tokenize(squeeze_whitespace(string))
     cleantext = [fold(item) for item in token]
     cleantext = [remove_punctuation(item) for item in cleantext]
+    return " ".join(cleantext)
+
+def prepro_antidot(string):
+    token = tokenize(squeeze_whitespace(string))
+    cleantext = [fold(item) for item in token]
+    cleantext = [remove_punctuation_nodot(item) for item in cleantext]
     return " ".join(cleantext)
